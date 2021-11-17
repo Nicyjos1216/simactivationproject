@@ -1,0 +1,71 @@
+create schema `simactivationdb`;
+use `simactivationdb`;
+
+drop table simDetails;
+create table simDetails(
+   simId Integer NOT NULL AUTO_INCREMENT primary key,
+   serviceNumber varchar(10),
+   simNumber varchar(13),
+   simStatus varchar(10)
+   );
+insert into simDetails  (ServiceNumber, simNumber, simStatus) values('1234567891', '1234567891234', 'active');
+insert into simDetails  (ServiceNumber, simNumber, simStatus) values('1234567892', '1234567891235', 'inactive');
+select * from simDetails;
+
+
+drop table simOffers;
+ create table simOffers(
+    offerId Integer NOT NULL AUTO_INCREMENT primary key,
+    callQty Integer,
+    cost Integer,
+    dataQty Integer,
+    duration Integer,
+    offerName varchar(50),
+    simId Integer
+    );
+insert into simOffers  (callQty, cost, dataQty, duration, offerName, simId) values(100, 100, 120, 10, 'Free calls and data', 1);
+insert into simOffers  (callQty, cost, dataQty, duration, offerName, simId) values(150, 50, 100, 15, 'Free calls', 2);
+select * from simOffers;
+
+
+drop table customerAddress;
+create table customerAddress(
+    addressId Integer NOT NULL AUTO_INCREMENT primary key,
+    address varchar(25),
+    city varchar(25),
+    pincode varchar(6),
+    state varchar(25)
+    );
+insert into customerAddress  (address, city, pincode, state) values('Jayanagar', 'Bangalore', '560041', 'Karnataka');
+insert into customerAddress  (address, city, pincode, state) values('Vijaynagar', 'Mysore', '567017', 'Karnataka');
+select * from customerAddress;
+
+
+drop table customer;
+create table customer(
+    uniqueIdNumber varchar(25) NOT NULL primary key,
+    dateOfbirth DATE,
+    email varchar(50),
+    firstName varchar(15),
+    lastName varchar(12),
+    idType varchar(10),
+    customerAddressId integer,
+    state varchar(25)
+    );
+insert into customer (uniqueIdNumber, dateOfbirth, email, firstName, lastName, idType, customerAddressId, state) values('1234567891234567', '1990-12-12', 'smith@abc.com', 'Smith', 'John', 'Aadhar', 1, 'Karnataka');
+insert into customer (uniqueIdNumber, dateOfbirth, email, firstName, lastName, idType, customerAddressId, state) values('1234567891234568', '1998-12-12', 'bob@abc.com', 'Bob', 'Sam',  'Aadhar', 2, 'Karnataka');
+select * from customer;
+
+
+drop table customerIdentity;
+create table customerIdentity(
+   uniqueIdNumber varchar(25) NOT NULL primary key,
+   dateOfbirth DATE,
+   firstName varchar(15),
+   lastName varchar(12),
+   email varchar(50),
+   state varchar(25)
+   );
+insert into customerIdentity (uniqueIdNumber, dateOfbirth, firstName, lastName, email, state) values('1234567891234567', '1990-12-12', 'Smith', 'John', 'smith@abc.com', 'Karnataka');
+insert into customerIdentity (uniqueIdNumber, dateOfbirth, firstName, lastName, email, state) values('1234567891234568', '1998-12-12', 'Bob', 'Sam', 'bob@abc.com', 'Karnataka');
+select * from customerIdentity;
